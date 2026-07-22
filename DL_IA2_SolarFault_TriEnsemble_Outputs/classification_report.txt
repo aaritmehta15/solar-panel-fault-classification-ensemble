@@ -1,0 +1,15 @@
+V2 TTA Ensemble — Test Accuracy: 93.9850%
+Weights: EfficientNet-B3=0.20, ConvNeXt-Tiny=0.40, ResNet50=0.40
+
+                   precision    recall  f1-score   support
+
+        Bird-drop     0.9655    0.9032    0.9333        31
+            Clean     0.9062    1.0000    0.9508        29
+            Dusty     0.9310    0.9310    0.9310        29
+Electrical-damage     1.0000    0.9333    0.9655        15
+  Physical-Damage     0.9000    0.8182    0.8571        11
+     Snow-Covered     0.9474    1.0000    0.9730        18
+
+         accuracy                         0.9398       133
+        macro avg     0.9417    0.9310    0.9351       133
+     weighted avg     0.9411    0.9398    0.9393       133
