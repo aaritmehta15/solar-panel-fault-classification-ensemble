@@ -5,7 +5,9 @@
 [![Macro AUC](https://img.shields.io/badge/Macro%20AUC-0.9915-blue?style=for-the-badge)](.)
 [![Macro F1](https://img.shields.io/badge/Macro%20F1-0.9351-orange?style=for-the-badge)](.)
 [![Dataset](https://img.shields.io/badge/Dataset-885%20Images%20·%206%20Classes-purple?style=for-the-badge)](.)
-[![License](https://img.shields.io/badge/License-Academic-lightgrey?style=for-the-badge)](.)
+[![License](https://img.shields.io/badge/License-MIT-lightgrey?style=for-the-badge)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.8%2B-yellow?style=for-the-badge)](.)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-red?style=for-the-badge)](.)
 
 ---
 
@@ -212,7 +214,15 @@ pip install -r requirements.txt
 ```
 
 ### 3. Download the dataset
-Download from Kaggle and structure it as:
+**Option A — Kaggle CLI (recommended):**
+```bash
+pip install kaggle
+kaggle datasets download -d pythonafroz/solar-panel-images --unzip -p ./data
+```
+> Requires a Kaggle account and `~/.kaggle/kaggle.json` API token. See [Kaggle API setup](https://github.com/Kaggle/kaggle-api#api-credentials).
+
+**Option B — Manual download:**
+Go to [Kaggle Dataset](https://www.kaggle.com/datasets/pythonafroz/solar-panel-images), download, and extract so the structure is:
 ```
 data/
 ├── Bird-drop/

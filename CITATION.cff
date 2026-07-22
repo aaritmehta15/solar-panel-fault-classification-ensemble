@@ -1,0 +1,69 @@
+cff-version: 1.2.0
+message: "If you use this code or results in your research, please cite it as below."
+type: software
+title: "Solar Panel Surface Fault Classification — Tri-Model Heterogeneous Ensemble"
+abstract: >
+  A production-grade deep learning system for automated solar panel surface fault
+  classification, achieving 93.98% test accuracy on 6 fault classes using a
+  tri-model heterogeneous ensemble of EfficientNet-B3, ConvNeXt-Tiny, and ResNet50.
+  Key contributions include double class-imbalance correction (WeightedRandomSampler
+  + Focal Loss), two-phase discriminative fine-tuning, grid-searched ensemble weight
+  optimization, 5-pass geometric Test-Time Augmentation (+3.00% accuracy gain),
+  and Grad-CAM explainability visualizations.
+authors:
+  - family-names: Mehta
+    given-names: Aarit
+    affiliation: "TY AIDS B1"
+  - family-names: Desai
+    given-names: Devanshu
+    affiliation: "TY AIDS B1"
+repository-code: "https://github.com/aaritmehta15/solar-panel-fault-classification-ensemble"
+license: MIT
+version: "2.0"
+date-released: "2026-07-23"
+keywords:
+  - solar-panel
+  - fault-classification
+  - deep-learning
+  - ensemble-learning
+  - EfficientNet
+  - ConvNeXt
+  - ResNet
+  - focal-loss
+  - grad-cam
+  - test-time-augmentation
+  - computer-vision
+  - pytorch
+references:
+  - type: article
+    title: "Focal Loss for Dense Object Detection"
+    authors:
+      - family-names: Lin
+        given-names: Tsung-Yi
+    year: 2017
+    journal: "ICCV 2017"
+    url: "https://arxiv.org/abs/1708.02002"
+  - type: article
+    title: "mixup: Beyond Empirical Risk Minimization"
+    authors:
+      - family-names: Zhang
+        given-names: Hongyi
+    year: 2018
+    journal: "ICLR 2018"
+    url: "https://arxiv.org/abs/1710.09412"
+  - type: article
+    title: "Grad-CAM: Visual Explanations from Deep Networks via Gradient-based Localization"
+    authors:
+      - family-names: Selvaraju
+        given-names: Ramprasaath R.
+    year: 2017
+    journal: "ICCV 2017"
+    url: "https://arxiv.org/abs/1610.02391"
+  - type: article
+    title: "A ConvNet for the 2020s"
+    authors:
+      - family-names: Liu
+        given-names: Zhuang
+    year: 2022
+    journal: "CVPR 2022"
+    url: "https://arxiv.org/abs/2201.03545"

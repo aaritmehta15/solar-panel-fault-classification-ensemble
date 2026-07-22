@@ -1,0 +1,25 @@
+# Normalize line endings to LF on all platforms (eliminates LF/CRLF warnings)
+* text=auto eol=lf
+
+# Treat binary files as binary (no line-ending conversion)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.pth binary
+*.pt binary
+*.pdf binary
+*.docx binary
+
+# Jupyter notebooks — treat as text (JSON), normalize endings
+*.ipynb text eol=lf
+
+# Python source — always LF
+*.py text eol=lf
+
+# Config / data files — always LF
+*.json text eol=lf
+*.txt  text eol=lf
+*.md   text eol=lf
+*.yml  text eol=lf
+*.yaml text eol=lf
+*.cff  text eol=lf
