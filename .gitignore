@@ -1,3 +1,26 @@
-# Ignore heavy model weight files (exceeds GitHub 100MB file size limit)
+# ── Model checkpoints (exceed GitHub 100 MB file limit) ──────────────────────
 *.pth
 *.pt
+
+# ── Internal academic submission documents ────────────────────────────────────
+*.docx
+*.doc
+16014223002_Solar Panel Surface Fault Classification Report_DL IA 2.pdf
+
+# ── Referenced / third-party material (copyright) ────────────────────────────
+Referenced Papers/
+
+# ── Scratch / temporary files ─────────────────────────────────────────────────
+scratch_*.py
+scratch_*.txt
+scratch_*.json
+
+# ── Python cache ──────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# ── OS / editor ───────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
