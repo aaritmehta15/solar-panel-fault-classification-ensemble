@@ -45,7 +45,7 @@ MIXUP_ALPHA = 0.3          # Beta distribution parameter
 MIXUP_PROB  = 0.5          # 50% of batches receive Mixup augmentation
 
 # ── Test-Time Augmentation ────────────────────────────────────────────────────
-TTA_N = 5                  # 5 geometric passes: original + HFlip + VFlip + Rot90 + Rot270
+TTA_N = 5                  # 5 geometric passes: original + HFlip + VFlip + Rot(+10°) + Rot(-10°)
 
 # ── ImageNet normalization ────────────────────────────────────────────────────
 IMAGENET_MEAN = [0.485, 0.456, 0.406]

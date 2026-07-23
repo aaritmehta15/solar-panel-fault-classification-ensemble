@@ -49,7 +49,7 @@ def build_optimizer(model, phase: int, model_type: str) -> optim.AdamW:
         backbone_params = list(model.features[5:].parameters())
     elif model_type == "convnext":
         head_params     = list(model.classifier.parameters())
-        backbone_params = list(model.features[6:].parameters())
+        backbone_params = list(model.features[4:].parameters())
     else:  # resnet
         head_params     = list(model.fc.parameters())
         backbone_params = (

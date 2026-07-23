@@ -55,29 +55,24 @@ def build_convnext_tiny(num_classes: int) -> nn.Module:
     ConvNeXt-Tiny (ImageNet-1K pretrained).
 
     Custom head:
-        LayerNorm → Flatten → Dropout(0.40) → Linear(768→256)
-        → GELU → Dropout(0.20) → Linear(256→num_classes)
+        m.classifier[2] = Linear(768→384) → GELU → Dropout(0.40) → Linear(384→num_classes)
 
-    LayerNorm matches ConvNeXt's design language. Large 7×7 kernels and
-    global context make this model strong for structural / spatial anomalies
-    (physical cracks, electrical damage cell patterns).
+    Keeps ConvNeXt's LayerNorm2d (m.classifier[0]) and Flatten (m.classifier[1])
+    intact. Large 7×7 depthwise kernels and global context make this backbone
+    strong for structural / spatial anomalies (cracks, electrical patterns).
 
-    Phase 2 unfreezes: features[6:] + classifier (last 2 ConvNeXt stages).
-    Trainable params in Phase 2: ~26.9 M
+    Phase 2 unfreezes: features[4:] + classifier (last 2 ConvNeXt stages).
     """
     m = models.convnext_tiny(weights="IMAGENET1K_V1")
     for p in m.parameters():
         p.requires_grad = False
 
     in_f = m.classifier[2].in_features   # 768 for Tiny
-    m.classifier = nn.Sequential(
-        nn.LayerNorm(in_f),
-        nn.Flatten(1),
-        nn.Dropout(0.40),
-        nn.Linear(in_f, 256),
+    m.classifier[2] = nn.Sequential(
+        nn.Linear(in_f, 384),
         nn.GELU(),
-        nn.Dropout(0.20),
-        nn.Linear(256, num_classes),
+        nn.Dropout(0.40),
+        nn.Linear(384, num_classes),
     )
     for p in m.classifier.parameters():
         p.requires_grad = True
@@ -90,15 +85,14 @@ def build_resnet50(num_classes: int) -> nn.Module:
     ResNet50 (ImageNet-1K pretrained).
 
     Custom head:
-        Dropout(0.40) → Linear(2048→512) → ReLU → BatchNorm1d(512)
-        → Dropout(0.25) → Linear(512→num_classes)
+        Linear(2048→512) → ReLU → BatchNorm1d(512) → Dropout(0.45)
+        → Linear(512→num_classes)
 
     Skip connections solve the vanishing gradient problem. Classic
     bottleneck blocks learn hierarchical features from low-level edges
     to high-level semantics — a stable complementary baseline.
 
     Phase 2 unfreezes: layer3 + layer4 + fc (last two residual groups).
-    Trainable params in Phase 2: ~23.1 M
     """
     m = models.resnet50(weights="IMAGENET1K_V1")
     for p in m.parameters():
@@ -106,11 +100,10 @@ def build_resnet50(num_classes: int) -> nn.Module:
 
     in_f = m.fc.in_features   # 2048 for ResNet50
     m.fc = nn.Sequential(
-        nn.Dropout(0.40),
         nn.Linear(in_f, 512),
         nn.ReLU(),
         nn.BatchNorm1d(512),
-        nn.Dropout(0.25),
+        nn.Dropout(0.45),
         nn.Linear(512, num_classes),
     )
     for p in m.fc.parameters():

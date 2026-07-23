@@ -51,8 +51,8 @@ def _tta_augment(img_batch):
         0 — original
         1 — horizontal flip
         2 — vertical flip
-        3 — 90° rotation
-        4 — 270° rotation
+        3 — 10° clockwise rotation
+        4 — 10° counter-clockwise rotation
     """
     variants = [img_batch]
     if TTA_N > 1:
@@ -60,9 +60,9 @@ def _tta_augment(img_batch):
     if TTA_N > 2:
         variants.append(TF.vflip(img_batch))
     if TTA_N > 3:
-        variants.append(torch.rot90(img_batch, 1, [2, 3]))
+        variants.append(TF.rotate(img_batch, 10))
     if TTA_N > 4:
-        variants.append(torch.rot90(img_batch, 3, [2, 3]))
+        variants.append(TF.rotate(img_batch, -10))
     return variants[:TTA_N]
 
 

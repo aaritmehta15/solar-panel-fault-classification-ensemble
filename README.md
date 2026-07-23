@@ -169,7 +169,7 @@ Final Evaluation + Grad-CAM  (test set, opened once)
 | **LR Schedule** | Linear warmup (2 ep) + CosineAnnealing |
 | **Loss** | Focal Loss (γ=2.0, label smoothing ε=0.05) + per-class weights |
 | **Imbalance** | WeightedRandomSampler (data level) + Focal Loss (gradient level) |
-| **TTA** | 5 geometric passes: original + H-flip + V-flip + rot90 + rot270 |
+| **TTA** | 5 geometric passes: original + H-flip + V-flip + rot(+10°) + rot(-10°) |
 | **Ensemble** | Grid-searched optimal weights on val set |
 | **Explainability** | Grad-CAM on last conv layer of each backbone |
 | **Precision** | AMP (FP16 forward / FP32 weights) + gradient clipping |
@@ -180,8 +180,8 @@ Final Evaluation + Grad-CAM  (test set, opened once)
 | Model | In Features | Custom Head | Phase 2 Params |
 |---|---|---|---|
 | **EfficientNet-B3** | 1,536 | Dropout(0.4)→Linear(1536→512)→SiLU→BN→Dropout(0.3)→Linear(512→6) | ~10.7 M |
-| **ConvNeXt-Tiny** | 768 | LayerNorm→Flatten→Dropout(0.4)→Linear(768→256)→GELU→Dropout(0.2)→Linear(256→6) | ~26.9 M |
-| **ResNet50** | 2,048 | Dropout(0.4)→Linear(2048→512)→ReLU→BN→Dropout(0.25)→Linear(512→6) | ~23.1 M |
+| **ConvNeXt-Tiny** | 768 | m.classifier[2] = Linear(768→384)→GELU→Dropout(0.4)→Linear(384→6) | ~26.9 M |
+| **ResNet50** | 2,048 | Linear(2048→512)→ReLU→BN→Dropout(0.45)→Linear(512→6) | ~23.1 M |
 
 ### Hyperparameters
 
